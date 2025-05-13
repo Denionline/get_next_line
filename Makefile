@@ -46,10 +46,16 @@ m:
 	@./a.out
 	@$(RM) a.out
 
-val:
+v:
 	@clear
 	@$(CC) main.c $(NAME)
 	@valgrind ./a.out
+	@$(RM) a.out
+
+vt:
+	@clear
+	@$(CC) main.c $(NAME)
+	@valgrind --trace-malloc=yes ./a.out
 	@$(RM) a.out
 
 clean:
