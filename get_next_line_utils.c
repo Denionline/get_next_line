@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 21:37:25 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/13 17:53:33 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:30:08 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ char	*ft_linejoin(char *prev, char *buffer)
 		j++;
 	}
 	line[i + j] = '\0';
-	return (line);
+	return (free(prev), line);
 }
