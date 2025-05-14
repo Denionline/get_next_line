@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/11 21:39:07 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/14 10:35:41 by dximenes         ###   ########.fr       */
+/*   Created: 2025/05/11 21:37:33 by dximenes          #+#    #+#             */
+/*   Updated: 2025/05/14 16:01:38 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-int	main(void)
-{
-	char	*string;
-	int		fd;
-	int		i;
+# include <limits.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
 
-	string = NULL;
-	fd = open("text", O_RDONLY);
-	i = 1;
-	while (i)
-	{
-		string = get_next_line(fd);
-		if (string)
-		{
-			printf("Line [%d] => %s", i, string);
-			free(string);
-			i++;
-		}
-		else
-			i = 0;
-	}
-	printf("\n");
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
+# ifndef FD_SIZE
+#  define FD_SIZE 1024
+# endif
+
+char	*get_next_line(int fd);
+char	*ft_linejoin(char *old, char *buffer);
+int		ft_changebuffer(char *buffer);
+
+#endif

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 21:37:25 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/14 16:27:10 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/14 16:27:20 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
-size_t	ft_linelen(char *prev, char *buffer)
+static size_t	ft_linelen(char *prev, char *buffer)
 {
 	size_t	i;
 	size_t	j;
@@ -50,9 +50,9 @@ int	ft_changebuffer(char *buffer)
 
 char	*ft_linejoin(char *prev, char *buffer)
 {
+	size_t	i;
+	size_t	j;
 	char	*line;
-	int		i;
-	int		j;
 
 	line = malloc(ft_linelen(prev, buffer) + 1);
 	if (!line)
