@@ -58,6 +58,16 @@ vt:
 	@valgrind --trace-malloc=yes ./a.out
 	@$(RM) a.out
 
+vf:
+	@clear
+	@$(CC) main.c $(NAME)
+	@valgrind --leak-check=full ./a.out
+	@$(RM) a.out
+
+p:
+	@clear
+	@/home/dximenes/francinette/tester.sh
+
 clean:
 	@$(RM) $(OBJS)
 

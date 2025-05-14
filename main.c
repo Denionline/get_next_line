@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 21:39:07 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/13 17:56:25 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/14 10:35:41 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,22 @@ int	main(void)
 {
 	char	*string;
 	int		fd;
+	int		i;
 
+	string = NULL;
 	fd = open("text", O_RDONLY);
-	string = get_next_line(fd);
-	printf("Line [1] => %s", string);
-	free(string);
-	// string = get_next_line(fd);
-	// printf("Line [2] => %s", string);
-	// free(string);
-	// string = get_next_line(fd);
-	// printf("Line [3] => %s", string);
-	// free(string);
-	// string = get_next_line(fd);
-	// printf("Line [4	] => %s", string);
-	// free(string);
+	i = 1;
+	while (i)
+	{
+		string = get_next_line(fd);
+		if (string)
+		{
+			printf("Line [%d] => %s", i, string);
+			free(string);
+			i++;
+		}
+		else
+			i = 0;
+	}
 	printf("\n");
 }
