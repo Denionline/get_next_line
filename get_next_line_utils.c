@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 21:37:25 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/14 16:27:10 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/14 16:36:11 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*ft_linejoin(char *prev, char *buffer)
 
 	line = malloc(ft_linelen(prev, buffer) + 1);
 	if (!line)
-		return (free(prev),NULL);
+		return (free(prev), NULL);
 	i = 0;
 	while (prev && prev[i])
 	{
