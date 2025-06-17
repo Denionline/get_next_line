@@ -1,41 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 21:36:21 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/14 15:31:39 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/16 13:03:21 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE + 1];
+	static char	*buffer[FD_SIZE];
 	ssize_t		readed;
 	char		*line;
 	int			findbl;
+	int			i;
 
-	if (BUFFER_SIZE <= 0 || fd < 0)
+	if (!buffer[fd - 3])
+	{
+		buffer[fd - 3] = malloc(BUFFER_SIZE + 1);
+		if (!buffer[fd - 3])
+			return (NULL);
+		i = 0;
+		while (i <= BUFFER_SIZE + 1)
+			buffer[fd - 3][i++] = '\0';
+	}
+	if (BUFFER_SIZE <= 0 || (fd < 0 || fd > FD_SIZE))
 		return (NULL);
 	line = NULL;
 	readed = 0;
 	findbl = 0;
 	while (!findbl)
 	{
-		if (!buffer[0])
-			readed = read(fd, buffer, BUFFER_SIZE);
-		if (!buffer[0] && readed == 0)
+		if (!buffer[fd - 3][0])
+			readed = read(fd, buffer[fd - 3], BUFFER_SIZE);
+		if (!buffer[fd - 3][0] && readed == 0)
 			break ;
-		if (!buffer[0] && readed == -1)
-			return (free(line), NULL);
-		line = ft_linejoin(line, buffer);
+		if (!buffer[fd - 3][0] && readed == -1)
+			return (ft_clear(line));
+		line = ft_linejoin(line, buffer[fd - 3]);
 		if (!line)
 			return (NULL);
-		findbl = ft_changebuffer(buffer);
+		findbl = ft_changebuffer(buffer[fd - 3]);
 	}
+	if (!buffer[fd - 3][0])
+		free(buffer[fd - 3]);
 	return (line);
 }

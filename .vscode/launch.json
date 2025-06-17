@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/dximenes/x/get_next_line",
-      "program": "/home/dximenes/x/get_next_line/build/Debug/outDebug",
+      "cwd": "/home/dximenes/x/m1/get_next_line",
+      "program": "/home/dximenes/x/m1/get_next_line/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

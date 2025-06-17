@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 21:37:33 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/14 16:01:38 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/05/16 10:54:11 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@
 char	*get_next_line(int fd);
 char	*ft_linejoin(char *old, char *buffer);
 int		ft_changebuffer(char *buffer);
+char	*ft_clear(char *buff);
 
 #endif
