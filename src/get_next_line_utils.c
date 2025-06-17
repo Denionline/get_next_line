@@ -6,13 +6,13 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 21:37:25 by dximenes          #+#    #+#             */
-/*   Updated: 2025/05/15 17:54:54 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/06/17 10:14:07 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_linelen(char *prev, char *buffer)
+static size_t	ft_linelen(char *prev, char *buffer)
 {
 	size_t	i;
 	size_t	j;
@@ -24,6 +24,12 @@ size_t	ft_linelen(char *prev, char *buffer)
 	while (buffer && buffer[j] && buffer[j - 1] != '\n')
 		j++;
 	return (i + j);
+}
+
+char	*ft_clear(char *buff)
+{
+	free(buff);
+	return (NULL);
 }
 
 int	ft_changebuffer(char *buffer)
@@ -50,13 +56,13 @@ int	ft_changebuffer(char *buffer)
 
 char	*ft_linejoin(char *prev, char *buffer)
 {
+	size_t	i;
+	size_t	j;
 	char	*line;
-	int		i;
-	int		j;
 
 	line = malloc(ft_linelen(prev, buffer) + 1);
 	if (!line)
-		return (free(prev), NULL);
+		return (ft_clear(prev));
 	i = 0;
 	while (prev && prev[i])
 	{
@@ -70,5 +76,6 @@ char	*ft_linejoin(char *prev, char *buffer)
 		j++;
 	}
 	line[i + j] = '\0';
-	return (free(prev), line);
+	free(prev);
+	return (line);
 }
