@@ -6,7 +6,7 @@
 #    By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/17 10:14:44 by dximenes          #+#    #+#              #
-#    Updated: 2025/06/17 10:29:58 by dximenes         ###   ########.fr        #
+#    Updated: 2025/06/17 11:18:17 by dximenes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ ARQUIVE		= get_next_line.a
 # **************************************************************************** #
 
 SRC_PATH	=	src/
+INC_PATH	=	include/
 FILES		=	get_next_line
 FILES		+=	get_next_line_utils
 
@@ -45,10 +46,10 @@ OBJS		=	$(addprefix $(SRC_PATH), $(addsuffix .o, $(FILES)))
 #                                  Compiler                                    #
 # **************************************************************************** #
 
-CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
-AR			= ar rcs
-MAKE		= make --no-print-directory
+CC			=	cc
+CFLAGS		=	-Wall -Wextra -Werror
+AR			=	ar rcs
+MAKE		=	make --no-print-directory
 
 # **************************************************************************** #
 #                                    Comands                                   #
@@ -61,7 +62,7 @@ $(ARQUIVE): $(OBJS)
 	@printf "\n$(C_GREEN)Success to created the arquive $(C_STD)$(ARQUIVE)\n\n"
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I $(INC_PATH) -c $< -o $@
 	@printf "Compiling $(C_YELLOW)$<$(C_STD)...\n"
 
 clean:
