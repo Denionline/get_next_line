@@ -6,7 +6,7 @@
 /*   By: dximenes <dximenes@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 21:36:21 by dximenes          #+#    #+#             */
-/*   Updated: 2025/06/17 10:14:13 by dximenes         ###   ########.fr       */
+/*   Updated: 2025/07/29 10:36:52 by dximenes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*get_next_line(int fd)
 {
-		static char	buffer[BUFFER_SIZE + 1];
+	static char	buffer[BUFFER_SIZE + 1];
 	ssize_t		readed;
 	char		*line;
 	int			findbl;
