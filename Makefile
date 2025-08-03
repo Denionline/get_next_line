@@ -70,7 +70,7 @@ start:
 	@printf "$(C_MAGENTA)===========Function [$(NAME)]===========$(C_STD)\n"
 
 $(NAME): $(BUILD_PATH)
-	@printf "\n$(C_YELLOW)Compile and transform files:$(C_STD)\n"
+	@printf "\n$(C_YELLOW)Compile $(NAME) files:$(C_STD)\n"
 	@TOTAL=$$(echo $(SRCS) | wc -w);\
 	CUR=1;\
 	for SRC in $(SRCS); do\
