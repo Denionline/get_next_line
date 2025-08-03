@@ -64,7 +64,7 @@ MAKE		=	make --no-print-directory
 
 
 all: start $(NAME)
-	@printf "\n$(C_GREEN)[$(NAME)] is ready :D$(C_STD)\n"
+	@printf "$(C_GREEN)[$(NAME)] is ready :D$(C_STD)\n"
 
 start:
 	@printf "$(C_MAGENTA)===========Function [$(NAME)]===========$(C_STD)\n"
