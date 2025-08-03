@@ -28,19 +28,26 @@ C_WHITE = \033[0;97m
 #                                    Names                                     #
 # **************************************************************************** #
 
-ARQUIVE		= get_next_line.a
+NAME		= get_next_line
+ARQUIVE		= $(NAME).a
 
 # **************************************************************************** #
 #                                    Path's                                    #
 # **************************************************************************** #
 
-SRC_PATH	=	src/
-INC_PATH	=	include/
+SRC_PATH	= src/
+BUILD_PATH	= .build/
+INC_PATH	= include/
+
+# **************************************************************************** #
+#                                    Files                                     #
+# **************************************************************************** #
+
 FILES		=	get_next_line
 FILES		+=	get_next_line_utils
 
 SRCS		=	$(addprefix $(SRC_PATH), $(addsuffix .c, $(FILES)))
-OBJS		=	$(addprefix $(SRC_PATH), $(addsuffix .o, $(FILES)))
+OBJS		=	$(addprefix $(BUILD_PATH), $(addsuffix .o, $(FILES)))
 
 # **************************************************************************** #
 #                                  Compiler                                    #
@@ -55,18 +62,35 @@ MAKE		=	make --no-print-directory
 #                                    Comands                                   #
 # **************************************************************************** #
 
-all: $(ARQUIVE)
 
-$(ARQUIVE): $(OBJS)
+all: start $(NAME)
+	@printf "\n$(C_GREEN)[$(NAME)] is ready :D$(C_STD)\n"
+
+start:
+	@printf "$(C_MAGENTA)===========Function [$(NAME)]===========$(C_STD)\n"
+
+$(NAME): $(BUILD_PATH)
+	@printf "\n$(C_YELLOW)Compile and transform files:$(C_STD)\n"
+	@TOTAL=$$(echo $(SRCS) | wc -w);\
+	CUR=1;\
+	for SRC in $(SRCS); do\
+		OBJ=$(BUILD_PATH)$$(basename $$SRC .c).o;\
+		$(CC) $(CFLAGS) -I$(INC_PATH) -c $$SRC -o $$OBJ;\
+		PERC=$$(printf "%d" $$((100 * CUR / TOTAL)));\
+		FILLED=$$(printf "%0.f" $$((20 * PERC / 100)));\
+		EMPTY=$$((20 - FILLED));\
+		BAR=$$(printf "$(C_GREEN)%*s$(C_STD)" $$FILLED "" | tr " " "#")$$(printf "%*s" $$EMPTY "" | tr " " ".");\
+		printf "\rCompiling [%s] %3d%%" $$BAR $$PERC;\
+		CUR=$$((CUR + 1)); \
+	done;\
+	printf "\n";
 	@$(AR) $(ARQUIVE) $(OBJS)
-	@printf "\n$(C_GREEN)Success to created the arquive $(C_STD)$(ARQUIVE)\n\n"
 
-%.o: %.c
-	@$(CC) $(CFLAGS) -I $(INC_PATH) -c $< -o $@
-	@printf "Compiling $(C_YELLOW)$<$(C_STD)...\n"
+$(BUILD_PATH):
+	@mkdir $(BUILD_PATH)
 
 clean:
-	@rm -rf $(OBJS)
+	@rm -rf $(BUILD_PATH)
 
 fclean: clean
 	@rm -rf $(ARQUIVE)
